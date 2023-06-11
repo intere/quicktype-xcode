@@ -100,15 +100,23 @@ class Runtime {
             return "\"\(key)\": \(javaScriptValue)"
         }.joined(separator: ", ") + " }"
     }
+
+    typealias QuicktypeCompletionHandler = (Result<[String], NSError>) -> Void
     
-    func quicktype(_ json: String, topLevel: String, language: Language, options: [String: Any], fail: @escaping (String) -> Void, success: @escaping ([String]) -> Void) {
+    func quicktype(
+        _ json: String,
+        topLevel: String,
+        language: Language,
+        options: [String: Any],
+        completion: @escaping QuicktypeCompletionHandler
+    ) {
         // .header (C header files) are assumed to be Objective-C headers
         if language == .objcHeader {
-            return quicktype(json, topLevel: topLevel, language:.objc, options: options, fail: fail, success: success)
+            return quicktype(json, topLevel: topLevel, language:.objc, options: options, completion: completion)
         }
         
-        resolve { lines in success(lines) }
-        reject { errorMessage in fail(errorMessage) }
+        resolve { lines in completion(.success(lines)) }
+        reject { errorMessage in completion(.failure(.quicktypeError(errorMessage))) }
         
         let comments = preface.map { "\"\($0)\"" }.joined(separator: ",")
         
@@ -133,5 +141,18 @@ class Runtime {
         
         let swifttype = context.objectForKeyedSubscript("swifttype")!
         swifttype.call(withArguments: [json])
+    }
+
+    func quicktype(_ json: String, topLevel: String, language: Language, options: [String: Any]) async throws -> [String] {
+        return try await withUnsafeThrowingContinuation { continuation in
+            quicktype(json, topLevel: topLevel, language: language, options: options) { result in
+                switch result {
+                case .success(let lines):
+                    continuation.resume(returning: lines)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
     }
 }
