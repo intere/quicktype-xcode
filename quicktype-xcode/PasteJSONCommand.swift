@@ -32,10 +32,7 @@ let commandOptions: [Language: [String: Any]] = [
 
 class PasteJSONCommand: NSObject, XCSourceEditorCommand {
     func error(_ message: String, details: String = "No details") -> NSError {
-        return NSError(domain: "quicktype", code: 1, userInfo: [
-            NSLocalizedDescriptionKey: NSLocalizedString(message, comment: ""),
-            NSLocalizedFailureReasonErrorKey: NSLocalizedString(details, comment: "")
-            ])
+        .quicktypeError(message, details: details)
     }
     
     func getFirstSelection(_ buffer: XCSourceTextBuffer) -> XCSourceTextRange? {
@@ -134,7 +131,7 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
         return prefix.isEmpty ? nil : String(prefix)
     }
     
-    func handleSuccess(lines: [String], _ invocation: Invocation, _ completionHandler: @escaping (Error?) -> Void) {
+    func handleSuccess(lines: [String], _ invocation: Invocation) {
         let buffer = invocation.buffer
         let selection = getFirstSelection(invocation.buffer) ?? XCSourceTextRange()
         
@@ -162,24 +159,22 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
         buffer.selections.removeAllObjects()
         let cursorPosition = XCSourceTextPosition(line: selection.start.line, column: 0)
         buffer.selections.add(XCSourceTextRange(start: cursorPosition, end: cursorPosition))
-        
-        completionHandler(nil)
     }
     
-    func handleError(message: String, _ invocation: Invocation, _ completionHandler: @escaping (Error?) -> Void) {
+    func handleError(error: NSError, _ invocation: Invocation) throws {
         // Sometimes an error ruins our Runtime, so let's reinitialize it
-        print("quicktype encountered an error: \(message)")
+        print("quicktype encountered an error: \(error.localizedDescription)")
         if Runtime.shared.initialize() {
             print("quicktype runtime reinitialized")
         } else {
             print("quicktype runtime could not be reinitialized")
         }
         
-        let displayMessage = message.contains("cannot parse input")
+        let displayMessage = error.localizedDescription.contains("cannot parse input")
             ? "Clipboard does not contain valid JSON"
             : "quicktype encountered an internal error"
-        
-        completionHandler(error(displayMessage, details: message))
+
+        throw self.error(displayMessage, details: error.localizedDescription)
     }
     
     func getTarget(_ command: Command, _ invocation: Invocation) -> (language: Language, options: [String: Any])? {
@@ -195,30 +190,26 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
         }
         return nil
     }
-    
-    func perform(with invocation: Invocation, completionHandler: @escaping (Error?) -> Void) -> Void {
+
+    func perform(with invocation: XCSourceEditorCommandInvocation) async throws {
         guard let command = command(identifier: invocation.commandIdentifier) else {
-            completionHandler(error("Unrecognized command"))
-            return
+            throw error("Unrecognized command")
         }
-        
         guard let (language, options) = getTarget(command, invocation) else {
-            completionHandler(error("Cannot generate code for \(invocation.buffer.contentUTI)"))
-            return
+            throw error("Cannot generate code for \(invocation.buffer.contentUTI)")
         }
-        
+
         let runtime = Runtime.shared
-        
+
         if !runtime.isInitialized && !runtime.initialize() {
-            completionHandler(error("Couldn't initialize type engine"))
-            return
+            throw error("Couldn't initialize type engine")
         }
-        
+
         guard let json = NSPasteboard.general.string(forType: .string) else {
-            completionHandler(error("Couldn't get JSON from clipboard"))
-            return
+            throw error("Couldn't get JSON from clipboard")
         }
-        
+
+
         var finalOptions = options
         let topLevel = inferTopLevelNameFromBuffer(invocation.buffer)
         // For Objective-C, we try to infer the class prefix
@@ -227,12 +218,12 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
                 finalOptions = options.merging(["class-prefix": classPrefix], uniquingKeysWith: { $1 })
             }
         }
-        
-        runtime.quicktype(json,
-                          topLevel: topLevel,
-                          language: language,
-                          options: finalOptions,
-                          fail: { self.handleError(message: $0, invocation, completionHandler) },
-                          success: { self.handleSuccess(lines: $0, invocation, completionHandler) })
+
+        do {
+            let lines = try await runtime.quicktype(json, topLevel: topLevel, language: language, options: finalOptions)
+            handleSuccess(lines: lines, invocation)
+        } catch {
+            try handleError(error: error as NSError, invocation)
+        }
     }
 }
