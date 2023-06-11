@@ -52,6 +52,28 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "36A887562A3551F10072B701"
+               BuildableName = "quicktype-Tests.xctest"
+               BlueprintName = "quicktype-Tests"
+               ReferencedContainer = "container:quicktype-xcode.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "36A887632A35522E0072B701"
+               BuildableName = "quicktypeTests.xctest"
+               BlueprintName = "quicktypeTests"
+               ReferencedContainer = "container:quicktype-xcode.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

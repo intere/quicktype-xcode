@@ -26,6 +26,7 @@ func languageFor(contentUTI: CFString) -> Language? {
 }
 
 class Runtime {
+    typealias QuicktypeCompletionHandler = (Result<[String], NSError>) -> Void
     public static let shared = Runtime()
     
     var context: JSContext!
@@ -100,8 +101,6 @@ class Runtime {
             return "\"\(key)\": \(javaScriptValue)"
         }.joined(separator: ", ") + " }"
     }
-
-    typealias QuicktypeCompletionHandler = (Result<[String], NSError>) -> Void
     
     func quicktype(
         _ json: String,

@@ -30,6 +30,8 @@ let commandOptions: [Language: [String: Any]] = [
     .swift: ["initializers": true]
 ]
 
+// MARK: - PasteJSONCommand
+
 class PasteJSONCommand: NSObject, XCSourceEditorCommand {
     func error(_ message: String, details: String = "No details") -> NSError {
         .quicktypeError(message, details: details)
@@ -191,7 +193,7 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
         return nil
     }
 
-    func perform(with invocation: XCSourceEditorCommandInvocation) async throws {
+    func perform(with invocation: Invocation) async throws {
         guard let command = command(identifier: invocation.commandIdentifier) else {
             throw error("Unrecognized command")
         }
