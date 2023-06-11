@@ -11,23 +11,33 @@ enum Command: String {
     case pasteJSONAsCode = "PasteJSONAsCode"
     case pasteJSONAsObjCHeader = "PasteJSONAsObjCHeader"
     case pasteJSONAsObjCImplementation = "PasteJSONAsObjCImplementation"
-}
 
-// "io.quicktype.quicktype-xcode.X" -> Command(rawValue: "X")
-func command(identifier: String) -> Command? {
-    guard let component = identifier.split(separator: ".").last else {
-        return nil
+    /// "com.intere.quicktype-xcode.X" -> Command(rawValue: "X")
+    static func from(identifier: String) -> Command? {
+        guard let component = identifier.split(separator: ".").last else {
+            return nil
+        }
+        return Command(rawValue: String(component))
     }
-    return Command(rawValue: String(component))
 }
 
 let commandOptions: [Language: [String: Any]] = [
+    // https://github.com/quicktype/quicktype/blob/master/packages/quicktype-core/src/language/CPlusPlus.ts
+    .cpp: [:],
+    // https://github.com/quicktype/quicktype/blob/master/packages/quicktype-core/src/language/Objective-C.ts
     .objc: [
         // Objective-C is not ideal yet, so extra comments are useful
         "extra-comments": true
     ],
+    // https://github.com/quicktype/quicktype/blob/master/packages/quicktype-core/src/language/Objective-C.ts
     .objcHeader: ["features": "interface"],
-    .swift: ["initializers": true]
+    // https://github.com/quicktype/quicktype/blob/master/packages/quicktype-core/src/language/Swift.ts
+    .swift: [
+        "initializers": true,
+        "access-level": "public",
+        "protocol": "equatable",
+        "swift5Support": true
+    ]
 ]
 
 // MARK: - PasteJSONCommand
@@ -186,7 +196,7 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
         case .pasteJSONAsObjCImplementation:
             return (.objc, ["features": "implementation"])
         default:
-            if let language = languageFor(contentUTI: invocation.buffer.contentUTI as CFString) {
+            if let language = languageFor(contentUTI: invocation.buffer.contentUTI) {
                 return(language, commandOptions[language] ?? [:])
             }
         }
@@ -194,7 +204,7 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
     }
 
     func perform(with invocation: Invocation) async throws {
-        guard let command = command(identifier: invocation.commandIdentifier) else {
+        guard let command = Command.from(identifier: invocation.commandIdentifier) else {
             throw error("Unrecognized command")
         }
         guard let (language, options) = getTarget(command, invocation) else {

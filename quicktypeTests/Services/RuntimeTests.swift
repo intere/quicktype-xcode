@@ -29,11 +29,6 @@ final class RuntimeTests: XCTestCase {
         XCTAssertNotNil(actual)
     }
 
-    func testGenerateJava() async throws {
-        let actual = try await subject.quicktype(referenceJSON, topLevel: "Pojo", language: .java, options: [:])
-        XCTAssertNotNil(actual)
-    }
-
     func testGenerateObjc() async throws {
         let actual = try await subject.quicktype(referenceJSON, topLevel: "Pooco", language: .objc, options: [:])
         XCTAssertNotNil(actual)
