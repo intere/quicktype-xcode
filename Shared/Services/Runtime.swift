@@ -5,7 +5,7 @@ class Runtime {
     typealias QuicktypeCompletionHandler = (Result<[String], NSError>) -> Void
     public static let shared = Runtime()
     
-    var context: JSContext!
+    var context: JSContext?
     
     let preface = [
         "Generated with quicktype",
@@ -54,16 +54,6 @@ class Runtime {
         return true
     }
     
-    private func resolve(resolve: @escaping ([String]) -> Void) {
-        let resolveBlock: @convention(block) ([String]) -> Void = { resolve($0) }
-        context.setObject(resolveBlock, forKeyedSubscript: "resolve" as NSString)
-    }
-    
-    private func reject(reject: @escaping (String) -> Void) {
-        let rejectBlock: @convention(block) (String) -> Void = { reject($0) }
-        context.setObject(rejectBlock, forKeyedSubscript: "reject" as NSString)
-    }
-    
     func renderOptionsToJavaScriptObject(_ options: [String: Any]) -> String {
         return "{ " + options.map { key, value in
             var javaScriptValue = "\(value)"
@@ -76,7 +66,51 @@ class Runtime {
             return "\"\(key)\": \(javaScriptValue)"
         }.joined(separator: ", ") + " }"
     }
-    
+
+    func quicktype(_ json: String, topLevel: String, language: Language, options: [String: Any]) async throws -> [String] {
+        return try await withUnsafeThrowingContinuation { continuation in
+            quicktype(json, topLevel: topLevel, language: language, options: options) { result in
+                switch result {
+                case .success(let lines):
+                    continuation.resume(returning: lines)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    func quicktype(config: QuicktypeConfig) async throws -> [String] {
+        if config.clipboardContents.starts(with: "https://") {
+            guard let url = URL(string: config.clipboardContents) else {
+                throw NSError.quicktypeError("Failed to create URL from \(config.clipboardContents)")
+            }
+            let data = try Data(contentsOf: url)
+            guard let jsonString = String(data: data, encoding: .utf8) else {
+                throw NSError.quicktypeError("Couldn't create a UTF-8 string from data received from \(config.clipboardContents)")
+            }
+
+            return try await quicktype(
+                jsonString,
+                topLevel: config.topLevel,
+                language: config.language,
+                options: config.options
+            )
+        }
+
+        return try await quicktype(
+            config.clipboardContents,
+            topLevel: config.topLevel,
+            language: config.language,
+            options: config.options
+        )
+    }
+}
+
+// MARK: - Implementation
+
+private extension Runtime {
+
     func quicktype(
         _ json: String,
         topLevel: String,
@@ -88,12 +122,21 @@ class Runtime {
         if language == .objcHeader {
             return quicktype(json, topLevel: topLevel, language:.objc, options: options, completion: completion)
         }
-        
-        resolve { lines in completion(.success(lines)) }
-        reject { errorMessage in completion(.failure(.quicktypeError(errorMessage))) }
-        
+
+        resolve { lines in
+            completion(.success(lines))
+        }
+        reject { errorMessage in
+            completion(.failure(.quicktypeError(errorMessage)))
+        }
+
         let comments = preface.map { "\"\($0)\"" }.joined(separator: ",")
-        
+
+        guard let context else {
+            completion(.failure(.quicktypeError("Context not initialized")))
+            return
+        }
+
         context.evaluateScript("""
             function swifttype(json) {
                 window.quicktype.quicktype({
@@ -112,21 +155,19 @@ class Runtime {
                 });
             }
         """)
-        
+
         let swifttype = context.objectForKeyedSubscript("swifttype")!
         swifttype.call(withArguments: [json])
     }
 
-    func quicktype(_ json: String, topLevel: String, language: Language, options: [String: Any]) async throws -> [String] {
-        return try await withUnsafeThrowingContinuation { continuation in
-            quicktype(json, topLevel: topLevel, language: language, options: options) { result in
-                switch result {
-                case .success(let lines):
-                    continuation.resume(returning: lines)
-                case .failure(let error):
-                    continuation.resume(throwing: error)
-                }
-            }
-        }
+    func resolve(resolve: @escaping ([String]) -> Void) {
+        let resolveBlock: @convention(block) ([String]) -> Void = { resolve($0) }
+        context?.setObject(resolveBlock, forKeyedSubscript: "resolve" as NSString)
     }
+
+    func reject(reject: @escaping (String) -> Void) {
+        let rejectBlock: @convention(block) (String) -> Void = { reject($0) }
+        context?.setObject(rejectBlock, forKeyedSubscript: "reject" as NSString)
+    }
+
 }

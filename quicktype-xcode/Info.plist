@@ -34,7 +34,7 @@
 					<key>XCSourceEditorCommandIdentifier</key>
 					<string>$(PRODUCT_BUNDLE_IDENTIFIER).PasteJSONAsCode</string>
 					<key>XCSourceEditorCommandName</key>
-					<string>Paste JSON as Code</string>
+					<string>Paste JSON as Swift</string>
 				</dict>
 				<dict>
 					<key>XCSourceEditorCommandClassName</key>
