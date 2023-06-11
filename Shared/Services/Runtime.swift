@@ -1,29 +1,5 @@
 import Foundation
 import JavaScriptCore
-import UniformTypeIdentifiers
-
-
-enum Language: String {
-    case swift, cpp, objc, objcHeader
-}
-
-fileprivate let languageUTIs: [String: Language] = [
-    UTType.swiftSource.identifier: .swift,
-    UTType.objectiveCSource.identifier: .objc,
-    UTType.cHeader.identifier: .objc,
-    UTType.cPlusPlusSource.identifier: .cpp,
-    "com.apple.dt.playground": .swift
-]
-
-func languageFor(contentUTI: String) -> Language? {
-    print(contentUTI)
-    for (uti, language) in languageUTIs {
-        if UTTypeConformsTo(contentUTI as CFString, uti as CFString) {
-            return language
-        }
-    }
-    return nil
-}
 
 class Runtime {
     typealias QuicktypeCompletionHandler = (Result<[String], NSError>) -> Void
@@ -36,8 +12,7 @@ class Runtime {
         "For more options, try https://app.quicktype.io"
     ]
     
-    private init() {
-    }
+    private init() { }
     
     var isInitialized: Bool {
         return nil != context

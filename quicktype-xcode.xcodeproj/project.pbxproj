@@ -12,6 +12,9 @@
 		36A887522A3551720072B701 /* Runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BCCEDE1FED99AD00E1C1DB /* Runtime.swift */; };
 		36A8876F2A3552A50072B701 /* RuntimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A8876E2A3552A50072B701 /* RuntimeTests.swift */; };
 		36A887702A35564B0072B701 /* quicktype.js in Resources */ = {isa = PBXBuildFile; fileRef = 6349B5AC1FECF39D00F7AA42 /* quicktype.js */; };
+		36A887732A3562FA0072B701 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A887722A3562FA0072B701 /* Language.swift */; };
+		36A887762A3563320072B701 /* LanguageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A887752A3563320072B701 /* LanguageTests.swift */; };
+		36A887772A35638B0072B701 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A887722A3562FA0072B701 /* Language.swift */; };
 		6317CD021FECC5DC006CCFC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317CD011FECC5DC006CCFC1 /* AppDelegate.swift */; };
 		6317CD041FECC5DC006CCFC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6317CD031FECC5DC006CCFC1 /* Assets.xcassets */; };
 		6317CD071FECC5DC006CCFC1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6317CD051FECC5DC006CCFC1 /* MainMenu.xib */; };
@@ -71,6 +74,8 @@
 		36A8874C2A35310B0072B701 /* NSError+Quicktype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Quicktype.swift"; sourceTree = "<group>"; };
 		36A887642A35522E0072B701 /* quicktypeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = quicktypeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36A8876E2A3552A50072B701 /* RuntimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeTests.swift; sourceTree = "<group>"; };
+		36A887722A3562FA0072B701 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		36A887752A3563320072B701 /* LanguageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTests.swift; sourceTree = "<group>"; };
 		6317CCFE1FECC5DC006CCFC1 /* Paste JSON as Code • quicktype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paste JSON as Code • quicktype.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6317CD011FECC5DC006CCFC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6317CD031FECC5DC006CCFC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,6 +124,7 @@
 		36A8874E2A3550CB0072B701 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				36A887712A3562EF0072B701 /* Models */,
 				36A887512A3551690072B701 /* Services */,
 				36A8874F2A3550D80072B701 /* Extensions */,
 			);
@@ -145,6 +151,7 @@
 		36A887652A35522E0072B701 /* quicktypeTests */ = {
 			isa = PBXGroup;
 			children = (
+				36A887742A3563260072B701 /* Models */,
 				36A8876D2A3552930072B701 /* Services */,
 			);
 			path = quicktypeTests;
@@ -156,6 +163,22 @@
 				36A8876E2A3552A50072B701 /* RuntimeTests.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		36A887712A3562EF0072B701 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				36A887722A3562FA0072B701 /* Language.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		36A887742A3563260072B701 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				36A887752A3563320072B701 /* LanguageTests.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		6317CCF51FECC5DC006CCFC1 = {
@@ -358,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36A8876F2A3552A50072B701 /* RuntimeTests.swift in Sources */,
+				36A887762A3563320072B701 /* LanguageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6317CD021FECC5DC006CCFC1 /* AppDelegate.swift in Sources */,
+				36A887732A3562FA0072B701 /* Language.swift in Sources */,
 				36A887522A3551720072B701 /* Runtime.swift in Sources */,
 				36A887502A3550F00072B701 /* NSError+Quicktype.swift in Sources */,
 			);
@@ -376,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36A8874D2A35310B0072B701 /* NSError+Quicktype.swift in Sources */,
+				36A887772A35638B0072B701 /* Language.swift in Sources */,
 				6317CD191FECC654006CCFC1 /* SourceEditorExtension.swift in Sources */,
 				63BCCEDF1FED99AD00E1C1DB /* Runtime.swift in Sources */,
 				6317CD1B1FECC654006CCFC1 /* PasteJSONCommand.swift in Sources */,

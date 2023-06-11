@@ -196,7 +196,7 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
         case .pasteJSONAsObjCImplementation:
             return (.objc, ["features": "implementation"])
         default:
-            if let language = languageFor(contentUTI: invocation.buffer.contentUTI) {
+            if let language = Language.languageFor(contentUTI: invocation.buffer.contentUTI) {
                 return(language, commandOptions[language] ?? [:])
             }
         }
@@ -220,7 +220,6 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
         guard let json = NSPasteboard.general.string(forType: .string) else {
             throw error("Couldn't get JSON from clipboard")
         }
-
 
         var finalOptions = options
         let topLevel = inferTopLevelNameFromBuffer(invocation.buffer)
