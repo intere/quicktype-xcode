@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		36A8874D2A35310B0072B701 /* NSError+Quicktype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A8874C2A35310B0072B701 /* NSError+Quicktype.swift */; };
+		36A887502A3550F00072B701 /* NSError+Quicktype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A8874C2A35310B0072B701 /* NSError+Quicktype.swift */; };
+		36A887522A3551720072B701 /* Runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BCCEDE1FED99AD00E1C1DB /* Runtime.swift */; };
+		36A8876F2A3552A50072B701 /* RuntimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A8876E2A3552A50072B701 /* RuntimeTests.swift */; };
+		36A887702A35564B0072B701 /* quicktype.js in Resources */ = {isa = PBXBuildFile; fileRef = 6349B5AC1FECF39D00F7AA42 /* quicktype.js */; };
+		36A887732A3562FA0072B701 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A887722A3562FA0072B701 /* Language.swift */; };
+		36A887762A3563320072B701 /* LanguageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A887752A3563320072B701 /* LanguageTests.swift */; };
+		36A887772A35638B0072B701 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A887722A3562FA0072B701 /* Language.swift */; };
+		36A887792A356DD50072B701 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A887782A356DD50072B701 /* Command.swift */; };
+		36A8877A2A356DD50072B701 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A887782A356DD50072B701 /* Command.swift */; };
+		36A8877C2A3571870072B701 /* QuicktypeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A8877B2A3571870072B701 /* QuicktypeConfig.swift */; };
+		36A8877D2A3571870072B701 /* QuicktypeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A8877B2A3571870072B701 /* QuicktypeConfig.swift */; };
 		6317CD021FECC5DC006CCFC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317CD011FECC5DC006CCFC1 /* AppDelegate.swift */; };
 		6317CD041FECC5DC006CCFC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6317CD031FECC5DC006CCFC1 /* Assets.xcassets */; };
 		6317CD071FECC5DC006CCFC1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6317CD051FECC5DC006CCFC1 /* MainMenu.xib */; };
@@ -22,6 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		36A887682A35522E0072B701 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6317CCF61FECC5DC006CCFC1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6317CCFD1FECC5DC006CCFC1;
+			remoteInfo = quicktype;
+		};
 		6317CD1E1FECC654006CCFC1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6317CCF61FECC5DC006CCFC1 /* Project object */;
@@ -58,6 +76,12 @@
 
 /* Begin PBXFileReference section */
 		36A8874C2A35310B0072B701 /* NSError+Quicktype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Quicktype.swift"; sourceTree = "<group>"; };
+		36A887642A35522E0072B701 /* quicktypeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = quicktypeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		36A8876E2A3552A50072B701 /* RuntimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeTests.swift; sourceTree = "<group>"; };
+		36A887722A3562FA0072B701 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		36A887752A3563320072B701 /* LanguageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTests.swift; sourceTree = "<group>"; };
+		36A887782A356DD50072B701 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		36A8877B2A3571870072B701 /* QuicktypeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuicktypeConfig.swift; sourceTree = "<group>"; };
 		6317CCFE1FECC5DC006CCFC1 /* Paste JSON as Code • quicktype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paste JSON as Code • quicktype.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6317CD011FECC5DC006CCFC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6317CD031FECC5DC006CCFC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,6 +101,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		36A887612A35522E0072B701 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6317CCFB1FECC5DC006CCFC1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -96,11 +127,75 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		36A8874E2A3550CB0072B701 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				36A887712A3562EF0072B701 /* Models */,
+				36A887512A3551690072B701 /* Services */,
+				36A8874F2A3550D80072B701 /* Extensions */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		36A8874F2A3550D80072B701 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				36A8874C2A35310B0072B701 /* NSError+Quicktype.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		36A887512A3551690072B701 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6349B5AC1FECF39D00F7AA42 /* quicktype.js */,
+				63BCCEDE1FED99AD00E1C1DB /* Runtime.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		36A887652A35522E0072B701 /* quicktypeTests */ = {
+			isa = PBXGroup;
+			children = (
+				36A887742A3563260072B701 /* Models */,
+				36A8876D2A3552930072B701 /* Services */,
+			);
+			path = quicktypeTests;
+			sourceTree = "<group>";
+		};
+		36A8876D2A3552930072B701 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				36A8876E2A3552A50072B701 /* RuntimeTests.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		36A887712A3562EF0072B701 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				36A887722A3562FA0072B701 /* Language.swift */,
+				36A887782A356DD50072B701 /* Command.swift */,
+				36A8877B2A3571870072B701 /* QuicktypeConfig.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		36A887742A3563260072B701 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				36A887752A3563320072B701 /* LanguageTests.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		6317CCF51FECC5DC006CCFC1 = {
 			isa = PBXGroup;
 			children = (
+				36A8874E2A3550CB0072B701 /* Shared */,
 				63A69E26201979880069EE72 /* README.md */,
 				6317CD001FECC5DC006CCFC1 /* quicktype */,
+				36A887652A35522E0072B701 /* quicktypeTests */,
 				6317CD171FECC654006CCFC1 /* quicktype-xcode */,
 				6317CD141FECC654006CCFC1 /* Frameworks */,
 				6317CCFF1FECC5DC006CCFC1 /* Products */,
@@ -112,6 +207,7 @@
 			children = (
 				6317CCFE1FECC5DC006CCFC1 /* Paste JSON as Code • quicktype.app */,
 				6317CD131FECC654006CCFC1 /* quicktype-xcode.appex */,
+				36A887642A35522E0072B701 /* quicktypeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,13 +236,10 @@
 		6317CD171FECC654006CCFC1 /* quicktype-xcode */ = {
 			isa = PBXGroup;
 			children = (
-				6349B5AC1FECF39D00F7AA42 /* quicktype.js */,
 				6317CD181FECC654006CCFC1 /* SourceEditorExtension.swift */,
 				6317CD1A1FECC654006CCFC1 /* PasteJSONCommand.swift */,
-				63BCCEDE1FED99AD00E1C1DB /* Runtime.swift */,
 				6317CD1C1FECC654006CCFC1 /* Info.plist */,
 				6317CD1D1FECC654006CCFC1 /* quicktype.entitlements */,
-				36A8874C2A35310B0072B701 /* NSError+Quicktype.swift */,
 			);
 			path = "quicktype-xcode";
 			sourceTree = "<group>";
@@ -154,6 +247,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		36A887632A35522E0072B701 /* quicktypeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36A8876A2A35522E0072B701 /* Build configuration list for PBXNativeTarget "quicktypeTests" */;
+			buildPhases = (
+				36A887602A35522E0072B701 /* Sources */,
+				36A887612A35522E0072B701 /* Frameworks */,
+				36A887622A35522E0072B701 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				36A887692A35522E0072B701 /* PBXTargetDependency */,
+			);
+			name = quicktypeTests;
+			productName = quicktypeTests;
+			productReference = 36A887642A35522E0072B701 /* quicktypeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		6317CCFD1FECC5DC006CCFC1 /* quicktype */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6317CD0C1FECC5DC006CCFC1 /* Build configuration list for PBXNativeTarget "quicktype" */;
@@ -202,10 +313,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = quicktype;
 				TargetAttributes = {
+					36A887632A35522E0072B701 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 6317CCFD1FECC5DC006CCFC1;
+					};
 					6317CCFD1FECC5DC006CCFC1 = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 1240;
@@ -234,18 +349,27 @@
 			projectRoot = "";
 			targets = (
 				6317CCFD1FECC5DC006CCFC1 /* quicktype */,
+				36A887632A35522E0072B701 /* quicktypeTests */,
 				6317CD121FECC654006CCFC1 /* quicktype-xcode */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		36A887622A35522E0072B701 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6317CCFC1FECC5DC006CCFC1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				6317CD041FECC5DC006CCFC1 /* Assets.xcassets in Resources */,
 				6317CD071FECC5DC006CCFC1 /* MainMenu.xib in Resources */,
+				36A887702A35564B0072B701 /* quicktype.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,11 +384,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		36A887602A35522E0072B701 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36A8876F2A3552A50072B701 /* RuntimeTests.swift in Sources */,
+				36A887762A3563320072B701 /* LanguageTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6317CCFA1FECC5DC006CCFC1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				6317CD021FECC5DC006CCFC1 /* AppDelegate.swift in Sources */,
+				36A8877C2A3571870072B701 /* QuicktypeConfig.swift in Sources */,
+				36A887732A3562FA0072B701 /* Language.swift in Sources */,
+				36A887522A3551720072B701 /* Runtime.swift in Sources */,
+				36A887792A356DD50072B701 /* Command.swift in Sources */,
+				36A887502A3550F00072B701 /* NSError+Quicktype.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,15 +411,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				36A8874D2A35310B0072B701 /* NSError+Quicktype.swift in Sources */,
+				36A8877D2A3571870072B701 /* QuicktypeConfig.swift in Sources */,
+				36A887772A35638B0072B701 /* Language.swift in Sources */,
 				6317CD191FECC654006CCFC1 /* SourceEditorExtension.swift in Sources */,
 				63BCCEDF1FED99AD00E1C1DB /* Runtime.swift in Sources */,
 				6317CD1B1FECC654006CCFC1 /* PasteJSONCommand.swift in Sources */,
+				36A8877A2A356DD50072B701 /* Command.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		36A887692A35522E0072B701 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6317CCFD1FECC5DC006CCFC1 /* quicktype */;
+			targetProxy = 36A887682A35522E0072B701 /* PBXContainerItemProxy */;
+		};
 		6317CD1F1FECC654006CCFC1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6317CD121FECC654006CCFC1 /* quicktype-xcode */;
@@ -301,6 +447,49 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		36A8876B2A35522E0072B701 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 268S5GJFWZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.intere.quicktype.quicktypeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Paste JSON as Code • quicktype.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Paste JSON as Code • quicktype";
+			};
+			name = Debug;
+		};
+		36A8876C2A35522E0072B701 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 268S5GJFWZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.intere.quicktype.quicktypeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Paste JSON as Code • quicktype.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Paste JSON as Code • quicktype";
+			};
+			name = Release;
+		};
 		6317CD0A1FECC5DC006CCFC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -353,7 +542,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -408,7 +597,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -434,7 +623,9 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.quicktype.quicktype;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.intere.quicktype.quicktype;
+				PRODUCT_MODULE_NAME = quicktype;
 				PRODUCT_NAME = "Paste JSON as Code • quicktype";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -459,7 +650,9 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.quicktype.quicktype;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.intere.quicktype.quicktype;
+				PRODUCT_MODULE_NAME = quicktype;
 				PRODUCT_NAME = "Paste JSON as Code • quicktype";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -483,7 +676,8 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "io.quicktype.quicktype-xcode";
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.intere.quicktype.quicktype-xcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -508,7 +702,8 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "io.quicktype.quicktype-xcode";
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.intere.quicktype.quicktype-xcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -519,6 +714,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		36A8876A2A35522E0072B701 /* Build configuration list for PBXNativeTarget "quicktypeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36A8876B2A35522E0072B701 /* Debug */,
+				36A8876C2A35522E0072B701 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6317CCF91FECC5DC006CCFC1 /* Build configuration list for PBXProject "quicktype-xcode" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
